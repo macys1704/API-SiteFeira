@@ -9,5 +9,6 @@ server.use(cors())
 server.use(express.json())
 
 server.use(inscricaoController);
+server.use(login-admController);
 
 server.listen(process.env.PORT, () => console.log('API subiu'))
