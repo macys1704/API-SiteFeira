@@ -11,9 +11,6 @@ endpoint.post('/inserir', async (req, resp) => {
         if (!inscricao.nm_nome)
             throw new Error('Campo nome obrigatório')
 
-        if (!inscricao.nm_ser_chamado)
-            throw new Error('Campo qual nome deseja ser chamado obrigatório')
-
         if (!inscricao.ds_email)
             throw new Error('Campo email obrigatório')
 
@@ -25,9 +22,6 @@ endpoint.post('/inserir', async (req, resp) => {
 
         if (!inscricao.nm_bairro)
             throw new Error('Campo bairro obrigatório')
-
-        if (!inscricao.ds_prev_chegada)
-            throw new Error('Campo previsão de chegada obrigatório')
 
         if (!inscricao.ds_sabendo)
             throw new Error('Campo como conheceu o FREI obrigatório')
