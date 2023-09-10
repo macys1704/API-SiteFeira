@@ -1,18 +1,15 @@
 import { Router } from "express";
-import { inserir } from '../repository/inscricaoRepository.js'
+import { inserir, consultarClientes, verificarDuplicado } from '../repository/inscricaoRepository.js'
 
 
 let endpoint = Router();
 
 endpoint.post('/inserir', async (req, resp) => {
     try {
-        let inscricao = req.body
+        let inscricao = req.body;
 
         if (!inscricao.nm_nome)
             throw new Error('Campo nome obrigatório')
-
-        if (!inscricao.ds_email)
-            throw new Error('Campo email obrigatório')
 
         if (!inscricao.ds_email)
             throw new Error('Campo email obrigatório')
@@ -29,6 +26,12 @@ endpoint.post('/inserir', async (req, resp) => {
         if (!inscricao.ds_foialuno)
             throw new Error('Campo ja foi aluno do FREI obrigatório')
 
+        const duplicado = await verificarDuplicado(inscricao.nr_telefone);
+
+        if (duplicado) {
+            throw new Error('Este registro já existe.');
+        }
+
         const inscricaoinserida = await inserir(inscricao);
         resp.send(inscricaoinserida)
 
@@ -37,6 +40,13 @@ endpoint.post('/inserir', async (req, resp) => {
             erro: err.message
         })
     }
+})
+
+
+endpoint.get('/consulta', async (req, resp) => {
+
+    let consulta = await consultarClientes()
+    resp.send(consulta)
 
 })
 
