@@ -17,9 +17,10 @@ endpoints.put('/adicionar/:id', async (req, resp) => {
         resp.send(resposta);
     } 
     
-    catch (error) { 
-        console.error('Erro:', error);
-        resp.status(500).send('Erro interno'); 
+    catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
     }
 });
 
@@ -31,9 +32,10 @@ endpoints.put('/diminuir/:id', async (req, resp) => {
         resp.send(resposta);
     } 
     
-    catch (error) { 
-        console.error('Erro:', error);
-        resp.status(500).send('Erro interno'); 
+    catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
     }
 });
 
