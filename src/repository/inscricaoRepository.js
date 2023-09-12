@@ -33,8 +33,8 @@ export async function verificarDuplicado(telefone) {
         const [resposta] = await conexao.query(comando, [telefone]);
         
         
-        if (resposta.length > [0]) {
-            return true;
+        if (resposta.length != [0]) {
+            return true; //Se retorna true tem registros duplicados 
         } else {
             return false;
         }

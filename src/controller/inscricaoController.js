@@ -21,7 +21,7 @@ endpoint.post('/inserir', async (req, resp) => {
             throw new Error('Campo bairro obrigatório')
 
         if (!inscricao.sabendo)
-            throw new Error('Campo como conheceu o FREI obrigatório')
+            throw new Error('Campo como ficou sabendo da feira? obrigatório')
 
         if (!inscricao.foialuno)
             throw new Error('Campo ja foi aluno do FREI obrigatório')
@@ -29,7 +29,7 @@ endpoint.post('/inserir', async (req, resp) => {
         const duplicado = await verificarDuplicado(inscricao.telefone);
 
         if (duplicado) {
-            throw new Error('Este registro já existe.');
+            throw new Error('Registro ja existente.');
         }
 
         const inscricaoinserida = await inserir(inscricao);
