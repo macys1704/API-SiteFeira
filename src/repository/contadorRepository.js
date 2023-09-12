@@ -36,10 +36,28 @@ export async function getSala(id) {
 
 
 export async function get(){
-    const comando = 'select * from TB_salas'
+    const comando = `select 
+    DS_salas as Sala,
+    DS_apresentação as Descricao,
+    DS_andar as Andar,
+    NR_pessoas as Quantidade_Visitantes
+    from TB_salas;`
 
     const resposta = await connection.query(comando);
     
     return resposta;
 }
 
+export async function totalUsr(){
+    const comando = `SELECT SUM(NR_pessoas) as Visitantes FROM TB_salas`
+
+    const [resposta] = await connection.query(comando); 
+    return resposta[0];
+}
+
+export async function totalCadastros() {
+    const comando = `SELECT COUNT(*) AS UserCadastros FROM tb_inscricao`
+
+    const [resposta] = await connection.query(comando); 
+    return resposta[0];
+}

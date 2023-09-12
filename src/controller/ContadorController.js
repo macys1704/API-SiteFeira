@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { ContadorAdicionar, ContadorRemover, get, getSala } from "../repository/contadorRepository.js";
+import { ContadorAdicionar, ContadorRemover, get, getSala, totalUsr, totalCadastros } from "../repository/contadorRepository.js";
 
 const endpoints = Router();
 
@@ -11,6 +11,16 @@ endpoints.get('/pesquisar', async (req, resp) =>{
 endpoints.get('/pesquisar/:id', async (req, resp) =>{
     const gg = req.params.id;
     const resposta = await getSala(gg);
+    resp.send(resposta);
+})
+
+endpoints.get('/total', async (req, resp) => {
+    const resposta = await totalUsr();
+    resp.send(resposta);
+})
+
+endpoints.get('/totalcadastros', async (req, resp) => {
+    const resposta = await totalCadastros();
     resp.send(resposta);
 })
 
