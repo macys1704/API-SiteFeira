@@ -15,29 +15,58 @@ server.get('/listar', async (req, resp) => {
     }
 })
 
-server.put('/listar/:id', async (req, resp) => {
-    try{
-        const { id } = req.params;
-        const user = req.body;
+// server.put('/verificacao/:id', async (req, resp) => {
+//     try{
+//         const id  = req.params.id;
 
-        if(!user.visitou)
-        throw new Error('Valor não valido');
+//         if(!user.visitou)
+//         throw new Error('Valor não valido');
 
-        if(!user.inscricao)
-        throw new Error('Usuario não pode ser alterado!');
+//         if(!user.inscricao)
+//         throw new Error('Usuario não pode ser alterado!');
 
-        const resposta = await AtualizarUsers(id, user);
+//         const resposta = await AtualizarUsers(id);
 
-        if(resposta != 1)
-        throw new Error('Usuario não pode ser alterado');
+//         if(resposta != 1)
+//         throw new Error('Usuario não pode ser alterado');
 
-        else
+//         else
+//             resp.status(204).send();
+//     }
+//     catch (err){
+//         resp.status(400).send({
+//             erro: err.message
+//         })
+//     }
+// })
+
+server.put('/verificacao/:id', async (req, resp) => {
+    try {
+        const id = req.params.id;
+
+        // Verifique se user.visitou e user.inscricao são definidos corretamente
+        const user = req.body; // Certifique-se de que os dados do usuário estão no corpo da solicitação
+
+        if (!user || !user.visitou) {
+            throw new Error('Valor não válido');
+        }
+
+        if (!user.inscricao) {
+            throw new Error('Usuário não pode ser alterado!');
+        }
+
+        const resposta = await AtualizarUsers(id);
+
+        if (resposta !== 1) {
+            throw new Error('Usuário não pode ser alterado');
+        } else {
             resp.status(204).send();
-    }
-    catch (err){
+        }
+    } catch (err) {
         resp.status(400).send({
             erro: err.message
-        })
+        });
     }
-})
+});
+
 export default server;

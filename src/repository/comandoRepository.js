@@ -1,4 +1,5 @@
-import conexao from "./connecion.js";
+import conexao from "./connections.js";
+
 
 export async function listarUsuarios(){
     const comando =`
@@ -8,13 +9,13 @@ export async function listarUsuarios(){
     return linhas;
 }
 
-export async function AtualizarUsers(id, inscricao){
+export async function AtualizarUsers(id){
     const comando =`
     UPDATE tb_inscricao
-    SET bt_visitou = true
+    SET bt_verificacao = true
     WHERE id_inscricao = ?;
     `
-    const [resposta] = await conexao.query(comando, [inscricao.visitou, id]);
+    const [resposta] = await conexao.query(comando, [id]);
     return resposta.affectedRows;
 }
 
