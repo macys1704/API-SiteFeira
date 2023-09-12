@@ -20,7 +20,19 @@ export async function ContadorRemover(parms){
     return resposta;
 }
 
+export async function getSala(id) {
+    const comando = `select 
+        DS_salas as Sala,
+        DS_apresentação as Descricao,
+        DS_andar as Andar,
+        NR_pessoas as Quantidade_Visitantes
+    from TB_salas
+    WHERE ID_salas = ?`
 
+    const [resposta] = await connection.query(comando, [id]); 
+
+    return resposta;
+}
 
 
 export async function get(){
@@ -28,6 +40,6 @@ export async function get(){
 
     const resposta = await connection.query(comando);
     
-    return resposta
+    return resposta;
 }
 

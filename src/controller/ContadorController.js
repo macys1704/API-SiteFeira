@@ -1,10 +1,16 @@
 import { Router } from "express";
-import { ContadorAdicionar, ContadorRemover, get } from "../repository/contadorRepository.js";
+import { ContadorAdicionar, ContadorRemover, get, getSala } from "../repository/contadorRepository.js";
 
 const endpoints = Router();
 
 endpoints.get('/pesquisar', async (req, resp) =>{
     const resposta = await get();
+    resp.send(resposta);
+})
+
+endpoints.get('/pesquisar/:id', async (req, resp) =>{
+    const gg = req.params.id;
+    const resposta = await getSala(gg);
     resp.send(resposta);
 })
 
