@@ -13,6 +13,7 @@ create database sitefeiradb;
 		nr_telefone					varchar(20),
 		nm_bairro					varchar(20),
         ds_sabendo					varchar(50),
-        ds_foialuno					varchar(50)
+        ds_foialuno					varchar(50),
+		bt_verificacao				boolean
 		
 	);
