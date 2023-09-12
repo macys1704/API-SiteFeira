@@ -18,7 +18,7 @@ insert into TB_salas
 	('Sala 5', 'Apresentação de Cursos', 'Pátio', 0),
 	('Sala 6', 'Bate papo sobre as Escolhas de Profissões', 'Pátio', 0),
     
-	('Sala 17', 'Poato de Saúde', '1º', 0),
+	('Sala 17', 'Posto de Saúde', '1º', 0),
 	('Sala 18', 'ADM - RH e POC', '1º', 0),
 	('Sala 19', 'ADM - Empreendedorismo e Logística', '1º', 0),
     
