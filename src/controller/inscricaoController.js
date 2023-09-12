@@ -8,25 +8,25 @@ endpoint.post('/inserir', async (req, resp) => {
     try {
         let inscricao = req.body;
 
-        if (!inscricao.nm_nome)
+        if (!inscricao.nome)
             throw new Error('Campo nome obrigatório')
 
-        if (!inscricao.ds_email)
+        if (!inscricao.email)
             throw new Error('Campo email obrigatório')
 
-        if (!inscricao.nr_telefone)
+        if (!inscricao.telefone)
             throw new Error('Campo telefone obrigatório')
 
-        if (!inscricao.nm_bairro)
+        if (!inscricao.bairro)
             throw new Error('Campo bairro obrigatório')
 
-        if (!inscricao.ds_sabendo)
+        if (!inscricao.sabendo)
             throw new Error('Campo como conheceu o FREI obrigatório')
 
-        if (!inscricao.ds_foialuno)
+        if (!inscricao.foialuno)
             throw new Error('Campo ja foi aluno do FREI obrigatório')
 
-        const duplicado = await verificarDuplicado(inscricao.nr_telefone);
+        const duplicado = await verificarDuplicado(inscricao.telefone);
 
         if (duplicado) {
             throw new Error('Este registro já existe.');
