@@ -1,7 +1,7 @@
 import conexao from './connections.js';
 
 export async function inserir(inscricao) {
-    let comando = 'insert into tb_inscricao(nm_nome, ds_email, nr_telefone, nm_bairro, ds_sabendo, ds_foialuno) values(?,?,?,?,?,?)';
+    let comando = 'insert into tb_inscricao(nm_nome, ds_email, nr_telefone, nm_bairro, ds_sabendo, ds_foialuno, bt_verificacao) values(?,?,?,?,?,?,FALSE)';
 
     let [resposta] = await conexao.query(comando, [
          inscricao.nome,
