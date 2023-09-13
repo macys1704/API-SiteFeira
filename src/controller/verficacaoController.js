@@ -8,7 +8,7 @@ endpoints.put('/verificacao-user/:id', async (req, resp) => {
         const id = req.params.id;
         const verificacao = await VerificacaoUser(id);
 
-        resp.send(verificacao);
+        resp.send('');
     } 
     
     catch (err) {
