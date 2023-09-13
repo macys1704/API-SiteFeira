@@ -1,0 +1,21 @@
+import { Router } from "express";
+import { VerificacaoUser } from "../repository/verificacaoRepository.js";
+
+const endpoints = Router();
+
+endpoints.put('/verificacao-user/:id', async (req, resp) => {
+    try {
+        const id = req.params.id;
+        const verificacao = await VerificacaoUser(id);
+
+        resp.send(verificacao);
+    } 
+    
+    catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+});
+
+export default endpoints
