@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { VerificacaoUser } from "../repository/verificacaoRepository.js";
+import { BuscarUser, VerificacaoUser } from "../repository/verificacaoRepository.js";
 
 const endpoints = Router();
 
@@ -15,6 +15,20 @@ endpoints.put('/verificacao-user/:id', async (req, resp) => {
         resp.status(400).send({
             erro: err.message
         })
+    }
+});
+
+endpoints.get('/buscar-user', async (req, resp) => {
+    try {
+        const { nomeEmail }  = req.query; 
+
+        const resultados = await BuscarUser(nomeEmail);
+
+        resp.send(resultados);
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });
     }
 });
 

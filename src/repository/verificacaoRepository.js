@@ -12,3 +12,16 @@ export async function VerificacaoUser(id) {
         throw error;
     }
 }
+
+export async function BuscarUser(NomeEmail){
+    try{
+        const comando = ' select * from tb_inscricao where nm_nome like ?  or ds_email = ? ';
+        const [resultado] = await conexao.query(comando, [`%${NomeEmail}%`, NomeEmail]);
+
+
+        return resultado;
+    }
+    catch(error){
+        throw error;
+    }
+}
