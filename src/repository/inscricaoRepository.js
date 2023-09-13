@@ -5,11 +5,11 @@ export async function inserir(inscricao) {
 
     let [resposta] = await conexao.query(comando, [
          inscricao.nome,
-        inscricao.email,
-        inscricao.telefone,
-        inscricao.bairro,
-        inscricao.sabendo,
-        inscricao.foialuno
+         inscricao.email,
+         inscricao.telefone,
+         inscricao.bairro,
+         inscricao.sabendo,
+         inscricao.foialuno
     ])
 
     inscricao.id = resposta.insertId
@@ -41,4 +41,24 @@ export async function verificarDuplicado(telefone) {
     } catch (error) {
         throw error;
 }
+
 }
+
+export async function verificarDuplicadoEmail(email) {
+    try {
+        const comando = 'SELECT * FROM tb_inscricao WHERE ds_email = ?';
+        
+        
+        const [resposta] = await conexao.query(comando, [email]);
+        
+        
+        if (resposta.length != [0]) {
+            return true; //Se retorna true tem registros duplicados 
+        } else {
+            return false;
+        }
+    } catch (error) {
+        throw error;
+}
+}
+

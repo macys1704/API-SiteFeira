@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { inserir, consultarClientes, verificarDuplicado } from '../repository/inscricaoRepository.js'
+import { inserir, consultarClientes, verificarDuplicado, verificarDuplicadoEmail } from '../repository/inscricaoRepository.js'
 
 
 let endpoint = Router();
@@ -27,13 +27,20 @@ endpoint.post('/inserir', async (req, resp) => {
             throw new Error('Campo ja foi aluno do FREI obrigatório')
 
         const duplicado = await verificarDuplicado(inscricao.telefone);
-
+        
         if (duplicado) {
-            throw new Error('Registro ja existente.');
+            throw new Error('Telefone já cadastrado.');     
+        }
+
+        const duplicadoEmail = await verificarDuplicadoEmail(inscricao.email);
+
+        if(duplicadoEmail){
+            throw new Error('Email já cadastrado.');
         }
 
         const inscricaoinserida = await inserir(inscricao);
         resp.send(inscricaoinserida)
+
 
     } catch (err) {
         resp.status(400).send({
