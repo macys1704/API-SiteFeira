@@ -49,7 +49,8 @@ export async function get(){
 }
 
 export async function totalUsr(){
-    const comando = `SELECT SUM(NR_pessoas) as Visitantes FROM TB_salas`
+    const comando = 'SELECT COUNT(*) AS UserCadastros FROM tb_inscricao where bt_verificacao=true'
+                  
 
     const [resposta] = await connection.query(comando); 
     return resposta[0];
