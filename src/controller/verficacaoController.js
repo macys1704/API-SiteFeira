@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { BuscarUser, VerificacaoUser } from "../repository/verificacaoRepository.js";
+import { BuscarUser, VerificacaoUser,DesvalidarUser } from "../repository/verificacaoRepository.js";
 
 const endpoints = Router();
 
@@ -11,6 +11,21 @@ endpoints.put('/verificacao-user/:id', async (req, resp) => {
         resp.send('validacao feita');
     } 
     
+    catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        })
+    }
+});
+
+endpoints.put('/desvalidacao-user/:id', async (req, resp) => {
+    try {
+        const id = req.params.id;
+        const verificacao = await DesvalidarUser(id);
+
+        resp.send('');
+    } 
+
     catch (err) {
         resp.status(400).send({
             erro: err.message
