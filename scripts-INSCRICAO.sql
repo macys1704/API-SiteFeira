@@ -9,11 +9,10 @@ create database sitefeiradb;
 	create table tb_inscricao (
 		id_inscricao				int primary key auto_increment,
 		nm_nome          			varchar(100),
-		ds_email					varchar(30),
+		ds_email					varchar(100),
 		nr_telefone					varchar(20),
-		nm_bairro					varchar(20),
-        ds_sabendo					varchar(50),
-        ds_foialuno					varchar(50),
-		bt_verificacao				boolean
-		
+		nm_bairro					varchar(100),
+        ds_sabendo					varchar(100),
+        ds_foialuno					varchar(100),
+        bt_verificacao				boolean
 	);

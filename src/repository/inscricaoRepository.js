@@ -4,12 +4,12 @@ export async function inserir(inscricao) {
     let comando = 'insert into tb_inscricao(nm_nome, ds_email, nr_telefone, nm_bairro, ds_sabendo, ds_foialuno) values(?,?,?,?,?,?)';
 
     let [resposta] = await conexao.query(comando, [
-         inscricao.nm_nome,
-        inscricao.ds_email,
-        inscricao.nr_telefone,
-        inscricao.nm_bairro,
-        inscricao.ds_sabendo,
-        inscricao.ds_foialuno
+         inscricao.nome,
+         inscricao.email,
+         inscricao.telefone,
+         inscricao.bairro,
+         inscricao.sabendo,
+         inscricao.foialuno,
     ])
 
     inscricao.id = resposta.insertId
@@ -25,11 +25,21 @@ export async function consultarClientes() {
     return resposta
 }
 
-export async function verificarDuplicado(telefone) {
-    
-    const comando = `SELECT * FROM tb_inscricao WHERE nr_telefone = ${telefone} `;
-  
-    const { resposta } = await conexao.query(comando, [telefone.nr_telefone]);
-  
-    return resposta;
+export async function verificarDuplicadoEmail(email) {
+    try {
+        const comando = 'SELECT * FROM tb_inscricao WHERE ds_email = ?';
+        
+        
+        const [resposta] = await conexao.query(comando, [email]);
+        
+        
+        if (resposta.length != [0]) {
+            return true;
+        } else {
+            return false;
+        }
+    } catch (error) {
+        throw error;
 }
+}
+
