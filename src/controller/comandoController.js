@@ -34,9 +34,7 @@ server.get('/buscar-user', async (req, resp) => {
 server.put('/verificacao/:id', async (req, resp) => {
     try {
         const id = req.params.id;
-
-        // Verifique se user.visitou e user.inscricao são definidos corretamente
-        const user = req.body; // Certifique-se de que os dados do usuário estão no corpo da solicitação
+        const user = req.body;
 
         if (!user) {
             throw new Error('Valor não válido');
@@ -59,9 +57,8 @@ server.put('/verificacao/:id', async (req, resp) => {
 server.put('/desvalidacao/:id', async (req, resp) => {
     try {
         const id = req.params.id;
-
-        // Verifique se user.visitou e user.inscricao são definidos corretamente
-        const user = req.body; // Certifique-se de que os dados do usuário estão no corpo da solicitação
+        
+        const user = req.body;
 
         if (!user) {
             throw new Error('Valor não válido');
