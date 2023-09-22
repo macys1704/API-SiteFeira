@@ -5,7 +5,6 @@ import cors from 'cors';
 import loginadmController from './controller/loginadmController.js'
 import inscricaoController from './controller/inscricaoController.js';
 import ContadorController from './controller/ContadorController.js'
-import VerificacaoUser  from './controller/verficacaoController.js';
 import comandoController from './controller/comandoController.js';
 
 let server = express();
