@@ -19,3 +19,12 @@ export async function AtualizarUsers(id){
     return resposta.affectedRows;
 }
 
+export async function DesvalidarUsers(id){
+    const comando =`
+    UPDATE tb_inscricao
+    SET bt_verificacao = false
+    WHERE id_inscricao = ?;
+    `
+    const [resposta] = await conexao.query(comando, [id]);
+    return resposta.affectedRows;
+}

@@ -52,6 +52,7 @@ export async function totalUsr(){
     const comando = `SELECT COUNT(*) AS Verificados FROM tb_inscricao where bt_verificacao = true`
 
     const [resposta] = await connection.query(comando); 
+    console.log(resposta);
     return resposta[0];
 }
 
