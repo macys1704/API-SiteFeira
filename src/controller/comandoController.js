@@ -1,6 +1,8 @@
 import {listarUsuarios,  AtualizarUsers, DesvalidarUsers} from '../repository/comandoRepository.js';
 
 import { Router } from 'express';
+import { BuscarUser } from '../repository/verificacaoRepository.js';
+
 const server = Router();
 
 server.get('/listar', async (req, resp) => {
@@ -15,30 +17,19 @@ server.get('/listar', async (req, resp) => {
     }
 })
 
-// server.put('/verificacao/:id', async (req, resp) => {
-//     try{
-//         const id  = req.params.id;
+server.get('/buscar-user', async (req, resp) => {
+    try {
+        const { nomeEmail }  = req.query; 
 
-//         if(!user.visitou)
-//         throw new Error('Valor não valido');
+        const resultados = await BuscarUser(nomeEmail);
 
-//         if(!user.inscricao)
-//         throw new Error('Usuario não pode ser alterado!');
-
-//         const resposta = await AtualizarUsers(id);
-
-//         if(resposta != 1)
-//         throw new Error('Usuario não pode ser alterado');
-
-//         else
-//             resp.status(204).send();
-//     }
-//     catch (err){
-//         resp.status(400).send({
-//             erro: err.message
-//         })
-//     }
-// })
+        resp.send(resultados);
+    } catch (err) {
+        resp.status(400).send({
+            erro: err.message
+        });
+    }
+});
 
 server.put('/verificacao/:id', async (req, resp) => {
     try {

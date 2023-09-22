@@ -15,7 +15,6 @@ server.use(express.json())
 server.use(inscricaoController);
 server.use(loginadmController);
 server.use(ContadorController);
-server.use(VerificacaoUser);
 server.use(comandoController);
 
 server.listen(process.env.PORT, () => console.log('API subiu'))
