@@ -45,10 +45,17 @@ endpoint.post('/inserir', async (req, resp) => {
 
 
 endpoint.get('/consulta', async (req, resp) => {
-
-    let consulta = await consultarClientes()
-    resp.send(consulta)
-
+    try {
+        let consulta = await consultarClientes()
+        resp.send(consulta)
+        
+    } catch (err) {
+        resp.status(400).send(
+            {
+                erro: err.message
+            }
+        )   
+    }
 })
 
 export default endpoint;

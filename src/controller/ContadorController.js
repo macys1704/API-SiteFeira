@@ -4,24 +4,60 @@ import { ContadorAdicionar, ContadorRemover, get, getSala, totalUsr, totalCadast
 const endpoints = Router();
 
 endpoints.get('/pesquisar', async (req, resp) =>{
-    const resposta = await get();
-    resp.send(resposta);
+    try {
+        const resposta = await get();
+        resp.send(resposta);
+
+    } catch (err) {
+        resp.status(400).send(
+            {
+                erro: err.message
+            }
+        )
+    }
 })
 
 endpoints.get('/pesquisar/:id', async (req, resp) =>{
-    const gg = req.params.id;
-    const resposta = await getSala(gg);
-    resp.send(resposta);
+    try {
+        const gg = req.params.id;
+        const resposta = await getSala(gg);
+        resp.send(resposta);
+
+    } catch (err) {
+        resp.status(400).send(
+            {
+                erro: err.message
+            }
+        )
+    }
 })
 
 endpoints.get('/total', async (req, resp) => {
-    const resposta = await totalUsr();
-    resp.send(resposta);
+    try {
+        const resposta = await totalUsr();
+        resp.send(resposta);
+
+    } catch (err) {
+        resp.status(400).send(
+            {
+                erro: err.message
+            }
+        )
+    }
 })
 
 endpoints.get('/totalcadastros', async (req, resp) => {
-    const resposta = await totalCadastros();
-    resp.send(resposta);
+    try {
+        const resposta = await totalCadastros();
+        resp.send(resposta);
+        
+    } catch (err) {
+        resp.status(400).send(
+            {
+                erro: err.message
+            }
+        )
+    }
 })
 
 
