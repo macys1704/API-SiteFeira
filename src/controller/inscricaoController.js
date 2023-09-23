@@ -11,22 +11,22 @@ endpoint.post('/inserir', async (req, resp) => {
         let inscricao = req.body;
 
         if (!inscricao.nome)
-            throw new Error('Campo nome obrigatório')
+            throw new Error('Campo "Nome" obrigatório.')
 
         if (!inscricao.email)
-            throw new Error('Campo email obrigatório')
+            throw new Error('Campo "Email" obrigatório.')
 
         if (!inscricao.telefone)
-            throw new Error('Campo telefone obrigatório')
+            throw new Error('Campo "Telefone" obrigatório.')
 
         if (!inscricao.bairro)
-            throw new Error('Campo bairro obrigatório')
+            throw new Error('Campo "Bairro" obrigatório.')
 
         if (!inscricao.sabendo)
-            throw new Error('Campo como ficou sabendo da feira? obrigatório')
+            throw new Error('Campo "Como ficou sabendo da feira?" obrigatório.')
 
         if (!inscricao.foialuno)
-            throw new Error('Campo ja foi aluno do FREI obrigatório')
+            throw new Error('Campo "Já foi aluno do FREI?" obrigatório.')
 
         const duplicadoEmail = await verificarDuplicadoEmail(inscricao.email);
 
