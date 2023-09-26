@@ -6,9 +6,9 @@ const endpoints = Router();
 endpoints.get('/login-admin', async (req, resp) => {
   try {
     const credencial = await verificarLogin();
-    resp.json(credencial);
+    resp.send(credencial);
   } catch (error) {
-    resp.status(500).json({ error: 'Erro ao buscar as credenciais' });
+    resp.status(500).send( error.message );
   }
 });
 
