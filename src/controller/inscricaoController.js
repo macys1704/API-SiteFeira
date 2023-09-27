@@ -1,8 +1,6 @@
 import { Router } from "express";
-import { inserir, consultarClientes, verificarDuplicadoEmail } from '../repository/inscricaoRepository.js'
+import { inserir, consultarClientes, verificarDuplicadoEmail, BuscarUser } from '../repository/inscricaoRepository.js'
 import {listarUsuarios,  AtualizarUsers, DesvalidarUsers} from '../repository/comandoRepository.js';
-
-import { BuscarUser } from '../repository/verificacaoRepository.js';
 
 let endpoint = Router();
 
@@ -73,7 +71,10 @@ endpoint.get('/listar', async (req, resp) => {
 
 endpoint.get('/buscar-user', async (req, resp) => {
     try {
-        const { nomeEmail }  = req.query; 
+        let { nomeEmail }  = req.query; 
+
+        if(!nomeEmail)
+            nomeEmail = '';
 
         const resultados = await BuscarUser(nomeEmail);
 
@@ -88,11 +89,6 @@ endpoint.get('/buscar-user', async (req, resp) => {
 endpoint.put('/verificacao/:id', async (req, resp) => {
     try {
         const id = req.params.id;
-        const user = req.body;
-
-        if (!user) {
-            throw new Error('Valor não válido');
-        }
 
         const resposta = await AtualizarUsers(id);
 
@@ -112,15 +108,7 @@ endpoint.put('/desvalidacao/:id', async (req, resp) => {
     try {
         const id = req.params.id;
         
-        const user = req.body;
-
-        if (!user) {
-            throw new Error('Valor não válido');
-        }
-
         const resposta = await DesvalidarUsers(id);
-        
-        console.log(resposta);
 
         if (resposta !== 1) {
             throw new Error('Usuário não pode ser alterado');

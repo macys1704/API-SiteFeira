@@ -66,7 +66,7 @@ endpoints.put('/adicionar/:id', async (req, resp) => {
         const gg = req.params.id;
         const resposta = await ContadorAdicionar(gg);
         
-        resp.send(resposta);
+        resp.status(204).send();
     } 
     
     catch (err) {
@@ -81,7 +81,7 @@ endpoints.put('/diminuir/:id', async (req, resp) => {
         const gg = req.params.id;
         const resposta = await ContadorRemover(gg);
         
-        resp.send(resposta);
+        resp.status(204).send();
     } 
     
     catch (err) {
