@@ -26,20 +26,16 @@ export async function consultarClientes() {
 }
 
 export async function verificarDuplicadoEmail(email) {
-    try {
         const comando = 'SELECT * FROM tb_inscricao WHERE ds_email = ?';
         
         
         const [resposta] = await conexao.query(comando, [email]);
         
         
-        if (resposta.length != [0]) {
+        if (resposta.length != 0) {
             return true;
         } else {
             return false;
         }
-    } catch (error) {
-        throw error;
-}
 }
 
