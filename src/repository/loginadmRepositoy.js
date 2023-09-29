@@ -10,3 +10,11 @@ export async function verificarLogin(login, senha) {
     const [dados] = await conexao.query(comando, [login, senha]);
     return dados;
 }
+
+export async function consultarClientesadm() {
+  let comando = 'select * from tb_login_adm'
+
+  let [resposta] = await conexao.query(comando)
+
+  return resposta
+}
