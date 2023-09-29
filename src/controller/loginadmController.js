@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { verificarLogin } from "../repository/loginadmRepositoy.js";
+import { consultarClientesadm, verificarLogin } from "../repository/loginadmRepositoy.js";
 
 const endpoints = Router();
 
@@ -14,9 +14,25 @@ endpoints.post('/login-admin', async (req, resp) => {
 
     resp.status(204).send();
 
-  } catch (error) {
-    resp.status(500).send( error.message );
+  } catch (err) {
+    resp.status(500).send( {erro: err.message} );
   }
 });
+
+
+
+endpoints.get('/consultaadm', async (req, resp) => {
+  try {
+      let consulta = await consultarClientesadm()
+      resp.send(consulta)
+      
+  } catch (err) {
+      resp.status(400).send(
+          {
+              erro: err.message
+          }
+      )   
+  }
+})
 
 export default endpoints;
