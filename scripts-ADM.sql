@@ -1,4 +1,4 @@
-use infocdb;
+use sitefeiradb;
 
 create table tb_login_adm(
 id_agenda        int primary key auto_increment,

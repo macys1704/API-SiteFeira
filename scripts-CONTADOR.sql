@@ -18,7 +18,7 @@ insert into TB_salas
 	('Sala 5', 'Apresentação de Cursos', 'Pátio', 0),
 	('Sala 6', 'Bate papo sobre as Escolhas de Profissões', 'Pátio', 0),
     
-	('Sala 17', 'Posto de Saúde', '1º', 0),
+	('Sala 17', 'Higiene Bucal', '1º', 0),
 	('Sala 18', 'ADM - RH e POC', '1º', 0),
 	('Sala 19', 'ADM - Empreendedorismo e Logística', '1º', 0),
     
@@ -26,9 +26,10 @@ insert into TB_salas
 	('Sala 25', 'Informática - Montagem, Configuração e Redes', '2º', 0),
 	('Sala 26', 'Informática - Programação', '2º', 0),
     
-	('AUDITÓRIO', 'CATE e Simulação de Entrevista', '3º', 0),
-	('AUDITÓRIO', 'SAS', '3º', 0),
-	('Sala 33', 'LINKEDIN', '3º', 0);
+	('AUDITÓRIO', 'CATE', '3º', 0),
+	('AUDITÓRIO', 'CADÚnico', '3º', 0),
+	('AUDITÓRIO', 'Cohab', '3º', 0),
+	('Sala 33', 'Simulação de Entrevista', '3º', 0);
     
     
     -- aumentar contador
