@@ -9,7 +9,7 @@ endpoints.post('/login-admin', async (req, resp) => {
 
     const resposta = await verificarLogin(login, senha);
     
-    if(resposta.length != 1)
+    if(resposta.length < 1)
       throw new Error('Credenciais Inválidas');
 
     resp.status(204).send();
