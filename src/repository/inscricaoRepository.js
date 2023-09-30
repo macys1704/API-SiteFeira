@@ -26,7 +26,7 @@ export async function consultarClientes() {
 }
 
 export async function BuscarUser(NomeEmail){
-    const comando = ' select * from tb_inscricao where nm_nome like ?  or ds_email = ? ';
+    const comando = ' select * from tb_inscricao where nm_nome like ?  or ds_email = ? order by nm_nome ';
     const [resultado] = await conexao.query(comando, [`%${NomeEmail}%`, NomeEmail]);
 
 
